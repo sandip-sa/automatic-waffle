@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nepal News - Latest News</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d71920;
+            --dark: #111;
+            --text: #222;
+            --light: #f5f5f5;
+            --white: #fff;
+            --border: #ddd;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            transition: 0.3s;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* TOP BAR */
+
+        .top-bar {
+            background: var(--dark);
+            color: white;
+            font-size: 13px;
+            padding: 8px 0;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* HEADER */
+
+        .header-main {
+            background: white;
+            min-height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        #darkModeBtn {
+            border: none;
+            background: var(--dark);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            background: white;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 17px 15px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--primary);
+        }
+
+        .search-box {
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            padding: 9px;
+            width: 150px;
+        }
+
+        .search-box button {
+            border: none;
+            background: var(--primary);
+            color: white;
+            padding: 0 12px;
+            cursor: pointer;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* BREAKING NEWS */
+
+        .breaking {
+            background: var(--primary);
+            color: white;
+        }
+
+        .breaking-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 12px 0;
+        }
+
+        .breaking strong {
+            background: white;
+            color: var(--primary);
+            padding: 5px 10px;
+        }
+
+        #breakingText {
+            transition: opacity 0.3s;
+        }
+
+        /* HERO */
+
+        .hero {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .main-news {
+            position: relative;
+        }
+
+        .news-image {
+            height: 350px;
+            background: linear-gradient(135deg, #333, #777);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .news-image span,
+        .card-image span {
+            background: var(--primary);
+            color: white;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-content h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .news-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .side-news {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .small-news {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            min-height: 125px;
+        }
+
+        .small-image {
+            min-height: 125px;
+        }
+
+        .small-news > div:last-child {
+            padding: 12px;
+        }
+
+        .small-news h2 {
+            font-size: 17px;
+            margin: 7px 0;
+        }
+
+        .category {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* SECTIONS */
+
+        .section {
+            margin-top: 50px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 27px;
+        }
+
+        .section-title div {
+            height: 3px;
+            background: var(--primary);
+            flex: 1;
+        }
+
+        /* NEWS GRID */
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card-image {
+            height: 180px;
+            padding: 15px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .card-content {
+            padding: 17px;
+        }
+
+        .card-content h3 {
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .card {
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* BACKGROUNDS */
+
+        .politics-image {
+            background: linear-gradient(135deg, #555, #222);
+        }
+
+        .sports-image {
+            background: linear-gradient(135deg, #126b3d, #79b85a);
+        }
+
+        .tech-image {
+            background: linear-gradient(135deg, #182848, #4b6cb7);
+        }
+
+        .business-image {
+            background: linear-gradient(135deg, #503b1b, #c69238);
+        }
+
+        .entertainment-image {
+            background: linear-gradient(135deg, #60136e, #db4bb3);
+        }
+
+        .weather-image {
+            background: linear-gradient(135deg, #4389a2, #5c258d);
+        }
+
+        /* CATEGORY BOX */
+
+        .category-box {
+            background: white;
+            padding: 30px;
+            border-left: 5px solid var(--primary);
+            border-radius: 5px;
+        }
+
+        .category-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .category-box p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .category-box button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* NO RESULTS */
+
+        #noResults {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            font-size: 18px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 60px;
+            background: #111;
+            color: white;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .footer-content h2,
+        .footer-content h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-content p {
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        .footer-content a {
+            display: block;
+            color: #bbb;
+            text-decoration: none;
+            margin: 8px 0;
+        }
+
+        .footer-content a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding: 15px;
+            color: #aaa;
+        }
+
+        /* DARK MODE */
+
+        body.dark {
+            --light: #151515;
+            --white: #222;
+            --text: #eee;
+            --border: #444;
+        }
+
+        body.dark .header-main,
+        body.dark nav,
+        body.dark .news-card,
+        body.dark .category-box {
+            background: #222;
+        }
+
+        body.dark .card-content p,
+        body.dark .news-content p,
+        body.dark .category-box p {
+            color: #bbb;
+        }
+
+        body.dark nav ul li a {
+            color: #eee;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .header-main {
+                min-height: 80px;
+            }
+
+            .logo {
+                font-size: 27px;
+            }
+
+            .nav-container {
+                padding: 10px 0;
+                flex-wrap: wrap;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li a {
+                padding: 12px;
+            }
+
+            .search-box {
+                margin-left: auto;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .top-bar .container {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .breaking-content {
+                font-size: 12px;
+            }
+
+            .news-image {
+                height: 230px;
+            }
+
+            .news-content h1 {
+                font-size: 24px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box input {
+                width: 110px;
+            }
+
+            .small-news {
+                grid-template-columns: 100px 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <header>
+
+        <div class="top-bar">
+            <div class="container">
+                <span id="date"></span>
+                <span>Breaking News • Latest Updates</span>
+            </div>
+        </div>
+
+        <!-- HEADER -->
+
+        <div class="header-main container">
+
+            <div class="logo">
+                <span>NEPAL</span> NEWS
+            </div>
+
+            <button id="darkModeBtn">🌙</button>
+
+        </div>
+
+        <!-- NAVIGATION -->
+
+        <nav>
+
+            <div class="container nav-container">
+
+                <button class="menu-btn" id="menuBtn">
+                    ☰
+                </button>
+
+                <ul id="navMenu">
+
+                    <li>
+                        <a href="#" class="active">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#politics">
+                            Politics
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#sports">
+                            Sports
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#technology">
+                            Technology
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#entertainment">
+                            Entertainment
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#business">
+                            Business
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search news..."
+                    >
+
+                    <button id="searchBtn">
+                        🔍
+                    </button>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- BREAKING NEWS -->
+
+    <section class="breaking">
+
+        <div class="container breaking-content">
+
+            <strong>
+                BREAKING
+            </strong>
+
+            <p id="breakingText">
+                Latest news and important updates from Nepal and around the world.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN -->
+
+    <main class="container">
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <article class="main-news news-card">
+
+                <div class="news-image politics-image">
+
+                    <span>
+                        POLITICS
+                    </span>
+
+                </div>
+
+                <div class="news-content">
+
+                    <h1>
+                        Major Political Developments Bring New Changes
+                    </h1>
+
+                    <p>
+                        Stay updated with the latest political developments,
+                        decisions and important announcements.
+                    </p>
+
+                    <small>
+                        Today • 10:30 AM
+                    </small>
+
+                </div>
+
+            </article>
+
+
+            <div class="side-news">
+
+                <article class="small-news news-card">
+
+                    <div class="small-image sports-image"></div>
+
+                    <div>
+
+                        <span class="category">
+                            SPORTS
+                        </span>
+
+                        <h2>
+                            Nepal prepares for an exciting sporting event
+                        </h2>
+
+                        <small>
+                            2 hours ago
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article class="small-news news-card">
+
+                    <div class="small-image tech-image"></div>
+
+                    <div>
+
+                        <span class="category">
+                            TECHNOLOGY
+                        </span>
+
+                        <h2>
+                            New technology is changing the digital world
+                        </h2>
+
+                        <small>
+                            3 hours ago
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article class="small-news news-card">
+
+                    <div class="small-image business-image"></div>
+
+                    <div>
+
+                        <span class="category">
+                            BUSINESS
+                        </span>
+
+                        <h2>
+                            Business sector sees new opportunities
+                        </h2>
+
+                        <small>
+                            4 hours ago
+                        </small>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- LATEST NEWS -->
+
+        <section class="section">
+
+            <div class="section-title">
+
+                <h2>
+                    Latest News
+                </h2>
+
+                <div></div>
+
+            </div>
+
+
+            <div class="news-grid" id="newsGrid">
+
+                <article
+                    class="card news-card"
+                    data-title="Government announces new development plan"
+                >
+
+                    <div class="card-image politics-image">
+
+                        <span>
+                            POLITICS
+                        </span>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>
+                            Government Announces New Development Plan
+                        </h3>
+
+                        <p>
+                            New plans have been introduced focusing on
+                            national development.
+                        </p>
+
+                        <small>
+                            1 hour ago
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article
+                    class="card news-card"
+                    data-title="Nepal wins important cricket match"
+                >
+
+                    <div class="card-image sports-image">
+
+                        <span>
+                            SPORTS
+                        </span>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>
+                            Nepal Wins Important Cricket Match
+                        </h3>
+
+                        <p>
+                            The national team celebrates an impressive
+                            performance.
+                        </p>
+
+                        <small>
+                            2 hours ago
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article
+                    class="card news-card"
+                    data-title="Artificial intelligence becomes more popular"
+                >
+
+                    <div class="card-image tech-image">
+
+                        <span>
+                            TECHNOLOGY
+                        </span>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>
+                            Artificial Intelligence Becomes More Popular
+                        </h3>
+
+                        <p>
+                            AI technology continues to influence everyday life.
+                        </p>
+
+                        <small>
+                            3 hours ago
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article
+                    class="card news-card"
+                    data-title="New business opportunities emerge"
+                >
+
+                    <div class="card-image business-image">
+
+                        <span>
+                            BUSINESS
+                        </span>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>
+                            New Business Opportunities Emerge
+                        </h3>
+
+                        <p>
+                            Entrepreneurs are exploring new opportunities
+                            in the market.
+                        </p>
+
+                        <small>
+                            4 hours ago
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article
+                    class="card news-card"
+                    data-title="New movie creates excitement"
+                >
+
+                    <div class="card-image entertainment-image">
+
+                        <span>
+                            ENTERTAINMENT
+                        </span>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>
+                            New Movie Creates Excitement
+                        </h3>
+
+                        <p>
+                            A new movie has attracted attention from audiences.
+                        </p>
+
+                        <small>
+                            5 hours ago
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article
+                    class="card news-card"
+                    data-title="Weather changes expected this week"
+                >
+
+                    <div class="card-image weather-image">
+
+                        <span>
+                            WEATHER
+                        </span>
+
+                    </div>
+
+                    <div class="card-content">
+
+                        <h3>
+                            Weather Changes Expected This Week
+                        </h3>
+
+                        <p>
+                            Weather experts have released a new forecast.
+                        </p>
+
+                        <small>
+                            6 hours ago
+                        </small>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <p id="noResults">
+                No news found.
+            </p>
+
+        </section>
+
+
+        <!-- POLITICS -->
+
+        <section class="section" id="politics">
+
+            <div class="section-title">
+
+                <h2>
+                    Politics
+                </h2>
+
+                <div></div>
+
+            </div>
+
+            <div class="category-box">
+
+                <h3>
+                    Latest Political Updates
+                </h3>
+
+                <p>
+                    Get the latest information about government decisions,
+                    parliament, elections and political developments.
+                </p>
+
+                <button>
+                    Read More
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- SPORTS -->
+
+        <section class="section" id="sports">
+
+            <div class="section-title">
+
+                <h2>
+                    Sports
+                </h2>
+
+                <div></div>
+
+            </div>
+
+            <div class="category-box">
+
+                <h3>
+                    Sports News
+                </h3>
+
+                <p>
+                    Follow cricket, football and other major sporting events.
+                </p>
+
+                <button>
+                    Read More
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- TECHNOLOGY -->
+
+        <section class="section" id="technology">
+
+            <div class="section-title">
+
+                <h2>
+                    Technology
+                </h2>
+
+                <div></div>
+
+            </div>
+
+            <div class="category-box">
+
+                <h3>
+                    Technology Updates
+                </h3>
+
+                <p>
+                    Discover the latest developments in technology,
+                    artificial intelligence, gadgets and the internet.
+                </p>
+
+                <button>
+                    Read More
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ENTERTAINMENT -->
+
+        <section class="section" id="entertainment">
+
+            <div class="section-title">
+
+                <h2>
+                    Entertainment
+                </h2>
+
+                <div></div>
+
+            </div>
+
+            <div class="category-box">
+
+                <h3>
+                    Entertainment News
+                </h3>
+
+                <p>
+                    Get the latest updates about movies, music,
+                    celebrities and entertainment.
+                </p>
+
+                <button>
+                    Read More
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- BUSINESS -->
+
+        <section class="section" id="business">
+
+            <div class="section-title">
+
+                <h2>
+                    Business
+                </h2>
+
+                <div></div>
+
+            </div>
+
+            <div class="category-box">
+
+                <h3>
+                    Business Updates
+                </h3>
+
+                <p>
+                    Stay updated with markets, companies,
+                    startups and the economy.
+                </p>
+
+                <button>
+                    Read More
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <div>
+
+                <h2>
+                    NEPAL NEWS
+                </h2>
+
+                <p>
+                    Your source for the latest news and updates.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="#">
+                    Home
+                </a>
+
+                <a href="#politics">
+                    Politics
+                </a>
+
+                <a href="#sports">
+                    Sports
+                </a>
+
+                <a href="#technology">
+                    Technology
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Follow Us
+                </h3>
+
+                <p>
+                    Facebook • Instagram • YouTube
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Nepal News. All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        // ==========================
+        // DATE
+        // ==========================
+
+        const dateElement =
+            document.getElementById("date");
+
+        function updateDate() {
+
+            const now = new Date();
+
+            const options = {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            };
+
+            dateElement.textContent =
+                now.toLocaleDateString(
+                    "en-US",
+                    options
+                );
+        }
+
+        updateDate();
+
+
+        // ==========================
+        // DARK MODE
+        // ==========================
+
+        const darkModeBtn =
+            document.getElementById("darkModeBtn");
+
+        darkModeBtn.addEventListener(
+            "click",
+            function () {
+
+                document.body.classList.toggle("dark");
+
+                if (
+                    document.body.classList.contains("dark")
+                ) {
+
+                    darkModeBtn.textContent = "☀️";
+
+                    localStorage.setItem(
+                        "darkMode",
+                        "enabled"
+                    );
+
+                } else {
+
+                    darkModeBtn.textContent = "🌙";
+
+                    localStorage.setItem(
+                        "darkMode",
+                        "disabled"
+                    );
+                }
+
+            }
+        );
+
+
+        // Remember dark mode
+
+        if (
+            localStorage.getItem("darkMode") ===
+            "enabled"
+        ) {
+
+            document.body.classList.add("dark");
+
+            darkModeBtn.textContent = "☀️";
+        }
+
+
+        // ==========================
+        // MOBILE MENU
+        // ==========================
+
+        const menuBtn =
+            document.getElementById("menuBtn");
+
+        const navMenu =
+            document.getElementById("navMenu");
+
+        menuBtn.addEventListener(
+            "click",
+            function () {
+
+                navMenu.classList.toggle("show");
+
+            }
+        );
+
+
+        // ==========================
+        // SEARCH
+        // ==========================
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const searchBtn =
+            document.getElementById("searchBtn");
+
+        const newsCards =
+            document.querySelectorAll(".card");
+
+        const noResults =
+            document.getElementById("noResults");
+
+
+        function searchNews() {
+
+            const searchValue =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+            let found = 0;
+
+
+            newsCards.forEach(
+                function (card) {
+
+                    const title =
+                        card
+                            .getAttribute("data-title")
+                            .toLowerCase();
+
+
+                    if (
+                        title.includes(searchValue)
+                    ) {
+
+                        card.style.display = "block";
+
+                        found++;
+
+                    } else {
+
+                        card.style.display = "none";
+                    }
+
+                }
+            );
+
+
+            if (found === 0) {
+
+                noResults.style.display =
+                    "block";
+
+            } else {
+
+                noResults.style.display =
+                    "none";
+            }
+        }
+
+
+        searchBtn.addEventListener(
+            "click",
+            searchNews
+        );
+
+
+        searchInput.addEventListener(
+            "keyup",
+            function (event) {
+
+                if (event.key === "Enter") {
+
+                    searchNews();
+                }
+
+
+                if (
+                    searchInput.value === ""
+                ) {
+
+                    newsCards.forEach(
+                        function (card) {
+
+                            card.style.display =
+                                "block";
+
+                        }
+                    );
+
+                    noResults.style.display =
+                        "none";
+                }
+
+            }
+        );
+
+
+        // ==========================
+        // BREAKING NEWS
+        // ==========================
+
+        const breakingNews = [
+
+            "Latest political developments bring new changes.",
+
+            "Nepal's sports teams prepare for upcoming competitions.",
+
+            "Technology continues to transform the digital world.",
+
+            "Business leaders discuss new opportunities.",
+
+            "Stay connected for more breaking news and updates."
+
+        ];
+
+
+        const breakingText =
+            document.getElementById(
+                "breakingText"
+            );
+
+
+        let breakingIndex = 0;
+
+
+        setInterval(
+            function () {
+
+                breakingIndex++;
+
+
+                if (
+                    breakingIndex >=
+                    breakingNews.length
+                ) {
+
+                    breakingIndex = 0;
+                }
+
+
+                breakingText.style.opacity =
+                    "0";
+
+
+                setTimeout(
+                    function () {
+
+                        breakingText.textContent =
+                            breakingNews[
+                                breakingIndex
+                            ];
+
+                        breakingText.style.opacity =
+                            "1";
+
+                    },
+                    300
+                );
+
+            },
+            4000
+        );
+
+
+        // ==========================
+        // NAVIGATION ACTIVE LINK
+        // ==========================
+
+        const navLinks =
+            document.querySelectorAll(
+                "nav a"
+            );
+
+
+        navLinks.forEach(
+            function (link) {
+
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        navLinks.forEach(
+                            function (item) {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                        this.classList.add(
+                            "active"
+                        );
+
+
+                        navMenu.classList.remove(
+                            "show"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
